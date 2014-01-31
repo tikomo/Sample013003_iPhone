@@ -119,6 +119,67 @@
     NSString* dayString = [formatter stringFromDate:[NSDate date]];
     NSLog(@"%@", dayString);
     
+    // 日付の計算
+    // 指定日までの時間を求める
+    NSDateFormatter* formatter3 = [[NSDateFormatter alloc] init];
+    [formatter3 setDateFormat:@"yyyy/MM/dd"];
+    NSDate* today3 = [NSDate date];
+    NSDate* eventDate = [formatter3 dateFromString:@"2014/02/02"];
+    NSTimeInterval secs = [eventDate timeIntervalSinceDate:today3];
+    
+    NSInteger days = round(secs/ (60*60*24));
+    NSLog(@"あと%d日です", days);
+    
+    // 日付の比較
+    
+    // 同じ日付か調べる
+    NSDateFormatter* formatter4 = [[NSDateFormatter alloc] init];
+    [formatter4 setDateFormat:@"yyyy/MM/dd"];
+    NSDate* date1 = [NSDate date];
+    NSDate* date2 = [NSDate date];
+    NSDate* date3 = [formatter4 dateFromString:@"2014/02/02"];
+    NSDate* date4 = [formatter4 dateFromString:@"2014/02/02"];
+    
+    if ([date1 isEqualToDate:date2]) {
+        NSLog(@"同じ日"); // こっち
+    } else {
+        NSLog(@"違う日");
+    }
+    
+    if ([date1 isEqualToDate:date3]) {
+        NSLog(@"同じ日"); // こっち
+    } else {
+        NSLog(@"違う日");
+    }
+    
+    
+    if ([date3 isEqualToDate:date4]) {
+        NSLog(@"同じ日");
+    } else {
+        NSLog(@"違う日"); // こっち
+    }
+    
+    // 比較
+    NSComparisonResult result = [date1 compare:date2];
+    
+    switch(result) {
+        case NSOrderedAscending:
+            //
+            NSLog(@"date1の方がold");
+            break;
+        case NSOrderedDescending :
+            //
+            NSLog(@"date1の方がnew");
+            break;
+        case NSOrderedSame :
+            // date1 = date2
+            NSLog(@"同じ日");
+            break;
+            
+    }
+    
+    
+    
     
     
     
